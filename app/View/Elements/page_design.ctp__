@@ -1,0 +1,34 @@
+<?php
+        echo $html->css(array(CDN.'css/jquery.miniColors.css'));
+        echo $html->script(array(CDN.'js/jquery.miniColors.js'));
+?>
+<div class="page-design">
+    <h1 class="page-header border-bottom"><?php __('Page Design') ?></h1>
+    <?php echo $form->create(null,array('id'=>'page-design-form')); ?>
+        <p class="form-desc" style="padding:0px 20px;font-size:11pt;"><?php __('Here you can change your page design. Every input colorpicker bellow will be effect to the color of each element.') ?></p>
+        <div style="margin-left:10px;">
+        <?php echo $form->input('text_color',array('label'=>__('Text',true),'autocomplete'=>'off','class'=>'colorpicker','data-target'=>'text-colored')); ?>
+        <?php echo $form->input('link_color',array('label'=>__('Link',true),'autocomplete'=>'off','class'=>'colorpicker','data-target'=>'link-colored')); ?>
+        <?php echo $form->input('sidebar_location',array('label'=>__('Sidebar location',true),'type'=>'select','options'=>array('left','right'))); ?>
+        <div class="clear"></div>
+        </div>
+        <input type="submit" class="close button" value="<?php __('Save Change') ?>"  style="margin:10px 0px 20px 10px;">
+        <div class="clear"></div>
+    <?php echo $form->end(); ?>
+    <div class="clear"></div>
+</div>
+<script>
+$(document).ready(function(){
+    $('.colorpicker').miniColors({
+		change: function(hex, rgb) {
+		    $(this).attr('style','background:'+hex);
+		    $($(this).attr('data-target')).css('color',hex);
+		},
+		close: function(hex, rgb) {
+		    $(this).attr('style','background:'+hex);
+		    $($(this).attr('data-target')).css('color',hex);
+		}
+    });
+});
+</script>
+
